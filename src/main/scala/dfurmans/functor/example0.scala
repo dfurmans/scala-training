@@ -19,24 +19,24 @@ object Example0 extends App {
 
   }
 
-  lazy val toPerformerDefinition: String = {
+  val toPerformerDefinition = {
     s"""
        |Functor Example ::
        | => FunctorRules.identityRule -> ${FunctorDefinition.FunctorRules.identityRule}
        |
        |""".stripMargin.stripLineEnd
   }
-
-  println(toPerformerDefinition)
+  print(toPerformerDefinition)
 
   object FunctorDefinition {
 
     // our functor definition declaration
     trait Functor[F[_]] {
       def map[A, B](fa: F[A])(f: A => B): F[B]
+      def lift[A, B](f: A => B): F[A] => F[B]
     }
 
-    // todo :: explain it
+    // todo theory :: explain it
     object FunctorRules{
       val identityRule = ourFunctorForSeq.map(Seq.empty[Int])(x => x) == Seq.empty[Int]
     }
@@ -44,7 +44,23 @@ object Example0 extends App {
     // a simple functor baked/based on Seq implementation
     val ourFunctorForSeq: Functor[Seq] = new Functor[Seq] {
       override def map[A, B](fa: Seq[A])(f: A => B): Seq[B] = fa.map(f)
+
+      // TODO practice
+      override def lift[A, B](f: A => B): Seq[A] => Seq[B] = ???
     }
   }
 
+  object Extra{
+    trait Functors[F[_]]{
+      def void[A](fa: F[A]): F[Unit] = ???
+      def fproduct[A, B](fa: F[A])(f: A => B): F[(A, B)] = ???
+      def as[A, B](fa: F[A], b: B): F[B] = ???
+      def tupleLeft[A, B](fa: F[A], b: B): F[(B, A)] = ???
+      def tupleRight[A, B](fa: F[A], b: B): F[(A, B)] = ???
+      def unzip[A, B](fab: F[(A, B)]): (F[A], F[B]) = ???
+      // harder
+      def lift[A, B](f: A => B): F[A] => F[B] = ???
+    }
+
+  }
 }
