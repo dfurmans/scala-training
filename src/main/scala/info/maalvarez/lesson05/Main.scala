@@ -62,6 +62,9 @@ object Main {
       .map(_ * 2)
       .filter(_ % 2 == 0)
 
+    // removed parallel from a starndar lib in 2.13.0
+    import scala.collection.parallel.ParSeq
+    import scala.collection.parallel.CollectionConverters._
     println(Seq.range(0, 10).par
       .map(_ * 2)
       .filter(_ % 2 == 0)

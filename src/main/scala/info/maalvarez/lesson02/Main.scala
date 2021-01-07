@@ -5,7 +5,7 @@ object Main {
     val optional: Option[String] = Some("hola")
 
     optional match {
-      case Some(value) if value.length  => println(value)
+      case Some(value) if (value.length == 4)  => println(value)
       case None => println("adios")
     }
   }
@@ -23,7 +23,7 @@ object Main {
   foo(10, 10) foreach { tuple =>
     println(s"($tuple._1, $tuple._2) ")  // prints (1, 9) (2, 8) (3, 7) (4, 6) (5, 5) (6, 4) (7, 3) (8, 2) (9, 1)
   }
-  1.25 eq 1.25
+//  1.25 eq 1.25
 }
 
 abstract class A {
@@ -37,6 +37,8 @@ trait C extends A {
 }
 class D extends B with C
 
-val d = new D
-println(d.message)  // I'm an instance of class B
-println(d.loudMessage)  // I'M AN INSTANCE OF CLASS B
+object Test{
+  val d: D = new D
+  println(d.message)  // I'm an instance of class B
+  println(d.loudMessage)  // I'M AN INSTANCE OF CLASS B
+}

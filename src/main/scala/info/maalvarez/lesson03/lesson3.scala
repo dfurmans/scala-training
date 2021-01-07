@@ -1,6 +1,6 @@
 package info.maalvarez.lesson03
 
-object Main {
+object MainMy {
   def main(args: Array[String]): Unit = {
 
     /*

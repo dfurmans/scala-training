@@ -40,11 +40,12 @@ object Coffee {
     val hotWater: Future[Water] = heatWater(Water(25))
     val hotMilk: Future[FrothedMilk] = frothMilk("milk")
 
-    for {
+    val result: Future[Cappuccino] = for {
       ground <- groundCoffee
       water <- hotWater
       foam <- hotMilk
       espresso <- brew(ground, water)
     } yield combine(espresso, foam)
+    result
   }
 }

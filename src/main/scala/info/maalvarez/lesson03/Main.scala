@@ -25,7 +25,7 @@ object Main {
       - mutable
      */
     val scalaSeq: Seq[Int] = Seq(0, 1, 2, 3, 4)
-scalaSeq.tail()
+
     for (content <- double(scalaSeq)) {
       println(s"Printing $content")
     }
