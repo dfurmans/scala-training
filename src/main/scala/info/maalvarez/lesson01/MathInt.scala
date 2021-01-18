@@ -1,5 +1,7 @@
 package info.maalvarez.lesson01
 
+// As a Standard inheritance
+
 class MathInt() extends Math[Int] {
   val product: (Int, Int) => Int = (x: Int, y: Int) => x * y
   val divide: (Int, Int) => Int = (x: Int, y: Int) => x / y
